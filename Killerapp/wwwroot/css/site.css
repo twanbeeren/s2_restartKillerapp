@@ -30,9 +30,22 @@
 @media screen and (max-width: 767px) {
     
 }
-.nav-tabs > li{
-    text-align: center;
+
+
+nav > ul {
+    list-style-type: none;
+    margin-left: 10%;
+    padding-top: 10px;
+    overflow: hidden;
+}
+nav > ul > li{
+    display: inline-block;
     width: 15%;
+}
+
+.navimage {
+    width: 50%;
+    height: auto;
 }
 
 .btn-default {
@@ -74,7 +87,6 @@ h1, h2, h3, h4, h5, p {
 
 a {
     text-decoration: none;
-    color: inherit;
 }
 
     a:hover {

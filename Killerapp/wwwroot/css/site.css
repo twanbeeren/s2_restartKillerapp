@@ -21,6 +21,11 @@
     width: 100%;
 }
 
+.carousel-inner > item > img{
+    height: 100%;
+    width: 100%;
+}
+
 /* QR code generator */
 #qrCode {
     margin: 15px;
@@ -56,7 +61,6 @@ nav > ul > li{
 } 
 .img-responsive{
     width: 100%;
-    min-height: 100%;
 }
 body {
     height: 100%;

@@ -10,6 +10,7 @@ namespace Models
         public int ChairId { get; private set; }
         public ChairType ChairType { get; private set; }
         public bool Taken { get; set; }
+        
 
         public Chair(ChairType type, int chairId)
         {

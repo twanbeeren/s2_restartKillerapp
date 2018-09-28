@@ -5,7 +5,11 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Killerapp", "Killerapp\Killerapp.csproj", "{91104CED-F0D9-4E8E-81A3-DC7DF526C929}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{20FDD85C-10EB-494D-844D-F92C05B7F26A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{20FDD85C-10EB-494D-844D-F92C05B7F26A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{C824613F-A20F-4891-8337-E4A644D6C1AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{344E7B71-8907-4287-9176-0EC93682AFBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{20FDD85C-10EB-494D-844D-F92C05B7F26A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20FDD85C-10EB-494D-844D-F92C05B7F26A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20FDD85C-10EB-494D-844D-F92C05B7F26A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C824613F-A20F-4891-8337-E4A644D6C1AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C824613F-A20F-4891-8337-E4A644D6C1AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C824613F-A20F-4891-8337-E4A644D6C1AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C824613F-A20F-4891-8337-E4A644D6C1AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{344E7B71-8907-4287-9176-0EC93682AFBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{344E7B71-8907-4287-9176-0EC93682AFBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{344E7B71-8907-4287-9176-0EC93682AFBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{344E7B71-8907-4287-9176-0EC93682AFBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

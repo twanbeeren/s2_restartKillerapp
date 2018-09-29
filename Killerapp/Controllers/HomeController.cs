@@ -7,22 +7,19 @@ using Microsoft.AspNetCore.Mvc;
 using Killerapp.Models;
 using Killerapp.ViewModels;
 using Logic;
+using Models;
 
 namespace Killerapp.Controllers
 {
     public class HomeController : Controller
     {
-        UserLogic userLogic = new UserLogic();
+        UserLogic userLogic;
         RegisterViewModel registerViewModel;
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult Login()
-        {
-            return View();
-        }
+        
 
         public IActionResult Register()
         {
@@ -33,7 +30,8 @@ namespace Killerapp.Controllers
         [HttpPost]
         public IActionResult Register(RegisterViewModel model)
         {
-            return RedirectToAction("Login");
+            User user = new User(model.Name, model.Password, model.Email, model.Age, model.Admin);
+            return RedirectToAction("Login","Login");
         }
 
         public IActionResult Contact()

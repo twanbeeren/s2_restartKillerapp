@@ -10,7 +10,7 @@ namespace Killerapp.Controllers
 {
     public class LoginController : Controller
     {
-        private UserLogic userLogic = new UserLogic();
+        private UserLogic userLogic;
         public IActionResult Login()
         {
             LoginViewModel model = new LoginViewModel();
@@ -20,6 +20,7 @@ namespace Killerapp.Controllers
         [HttpPost]
         public IActionResult Login(LoginViewModel model)
         {
+            userLogic = new UserLogic();
             if(userLogic.Login(model.Name, model.Password))
             {
                 return RedirectToAction("Index", "Home");

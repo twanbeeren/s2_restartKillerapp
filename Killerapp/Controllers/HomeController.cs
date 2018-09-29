@@ -31,6 +31,7 @@ namespace Killerapp.Controllers
         public IActionResult Register(RegisterViewModel model)
         {
             User user = new User(model.Name, model.Password, model.Email, model.Age, model.Admin);
+            //try{userLogic.Register(user);}
             return RedirectToAction("Login","Login");
         }
 

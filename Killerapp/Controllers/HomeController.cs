@@ -5,21 +5,34 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Killerapp.Models;
+using Killerapp.ViewModels;
+using Logic;
+using Models;
 
 namespace Killerapp.Controllers
 {
     public class HomeController : Controller
     {
+        UserLogic userLogic;
+        RegisterViewModel registerViewModel;
         public IActionResult Index()
         {
             return View();
         }
+        
 
-        public IActionResult About()
+        public IActionResult Register()
         {
-            ViewData["Message"] = "Your application description page.";
+            registerViewModel = new RegisterViewModel();
+            return View(registerViewModel);
+        }
 
-            return View();
+        [HttpPost]
+        public IActionResult Register(RegisterViewModel model)
+        {
+            User user = new User(model.Name, model.Password, model.Email, model.Age, model.Admin);
+            //try{userLogic.Register(user);}
+            return RedirectToAction("Login","Login");
         }
 
         public IActionResult Contact()

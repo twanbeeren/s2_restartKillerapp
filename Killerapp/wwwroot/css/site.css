@@ -69,7 +69,7 @@ body {
     font-family: 'Arimo', Arial, sans-serif;
     font-weight: 400;
     font-size: 14px;
-    color: #010b26;
+    color: #eaeaea;
 }
 
 * {
@@ -227,7 +227,34 @@ a {
 
 .form-group{
     text-align: center;
-    color: aliceblue;
+}
+
+.movieDetails {
+    background-color: rgba(150, 150, 150, 0.5);
+    width: 80%;
+    height: 25%;
+    margin: 5%;
+    display: inline-flex;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(234, 234, 234);
+    border-image: initial;
+    border-radius: 5px;
+    padding: 0px;
+}
+.movieDetails > img{
+    align-self: center;
+}
+.movieDetails > ul{
+    background-color: purple;
+    align-self: center;
+}
+.movieDetails > h2{
+    margin-left: 10%;
+    align-self: center;
+}
+.movieDetails > ul > li{
+    font-size: 20px;
 }
 
 

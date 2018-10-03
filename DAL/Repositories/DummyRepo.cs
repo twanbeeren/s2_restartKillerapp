@@ -12,5 +12,6 @@ namespace DAL.Repositories
 
         public User GetUser() => dummyContext.GetUser();
 
+        public List<Cinema> GetCinemas() => dummyContext.GetCinemas();
     }
 }

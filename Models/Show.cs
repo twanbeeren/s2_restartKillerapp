@@ -10,12 +10,21 @@ namespace Models
         public Cinema Cinema { get; private set; }
         public Movie Movie { get; private set; }
         public DateTime Date { get; private set; }
+        public int Showtime { get; private set; }
 
         public Show(Cinema cinema, Movie movie, DateTime date)
         {
             Cinema = cinema;
             Movie = movie;
             Date = date;
+            Showtime = SetShowtime(movie);
+        }
+
+        private int SetShowtime(Movie movie)
+        {
+            int breaktime = 15;
+            Showtime = movie.Duration + breaktime;
+            return Showtime;
         }
     }
 }

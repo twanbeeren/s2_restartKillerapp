@@ -8,6 +8,7 @@ namespace DAL.MemoryContexts
     interface IDummyContext
     {
         User GetUser();
-        
+
+        List<Cinema> GetCinemas();
     }
 }

@@ -7,14 +7,24 @@ namespace Models
     public class Cinema
     {
         public List<MovieHall> MovieHalls { get; private set; }
-        public string Name { get; private set; }
+        public string Company { get; private set; }
         public string Place { get; private set; }
-        public Cinema(List<MovieHall> Halls, string name, string place)
+
+        public Cinema(string company, string place)
+        {
+            Company = company;
+            Place = place;
+        }
+        public Cinema(List<MovieHall> Halls, string company, string place)
         {
             MovieHalls = Halls;
-            Name = name;
+            Company = company;
             Place = place;
         }
 
+        public override string ToString()
+        {
+            return Company + Place;
+        }
     }
 }

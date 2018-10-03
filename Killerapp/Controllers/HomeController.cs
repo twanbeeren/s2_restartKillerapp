@@ -13,7 +13,7 @@ namespace Killerapp.Controllers
 {
     public class HomeController : Controller
     {
-        UserLogic userLogic;
+        UserLogic userLogic = new UserLogic();
         RegisterViewModel registerViewModel;
         public IActionResult Index()
         {

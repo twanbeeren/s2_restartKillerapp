@@ -16,11 +16,22 @@ namespace DAL.MemoryContexts
 
         public List<Cinema> GetCinemas()
         {
-            List<Cinema> cinemas = new List<Cinema>();
-            cinemas.Add(new Cinema("Pathé", "Amsterdam"));
-            cinemas.Add(new Cinema("Foroxity", "Sittard"));
-            cinemas.Add(new Cinema("Pathé", "Maastricht"));
+            List<Cinema> cinemas = new List<Cinema>
+            {
+                new Cinema("Pathé", "Amsterdam"),
+                new Cinema("Foroxity", "Sittard"),
+                new Cinema("Pathé", "Maastricht")
+            };
             return cinemas;
+        }
+
+        public List<Show> GetShows()
+        {
+            List<Show> shows = new List<Show>
+            {
+                new Show(new Cinema("Pathé", "Amsterdam"), new Movie("Deadpool 2", Models.Enumerations.Genre.Action, 110, DateTime.Now, Models.Enumerations.AgeRestriction.Twelve, 4), DateTime.Now)
+            };
+            return shows;
         }
     }
 }

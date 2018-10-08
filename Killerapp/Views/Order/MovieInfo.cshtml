@@ -1,4 +1,4 @@
-﻿@model Killerapp.ViewModels.Order.OrderViewModel
+﻿@model Killerapp.ViewModels.Order.ChooseShowViewModel
 @using Models
 <div class="row">
     <div class="col-lg-12">
@@ -13,15 +13,16 @@
 </div>
 <div class="row">
     <ul class="nav nav-pills nav-justified">
+        @*I should check for all the shows so its easier to display the showtimes, while I still know in wich cinema the movie will be shown*@
         @foreach (Cinema cinema in Model.Cinemas)
         {
             if(cinema == Model.Cinemas.First())
             {
-                <li class="active"><a data-toggle="pill" href="#@cinema.ToString()">@cinema.Company @cinema.Place</a></li>
+                <li class="active"><a data-toggle="pill" href="#@cinema.Name">@cinema.Name</a></li>
             }
             else
             {
-                <li><a data-toggle="pill" href="#@cinema.ToString()">@cinema.Company @cinema.Place</a></li>
+                <li><a data-toggle="pill" href="#@cinema.Name">@cinema.Name></a></li>
             }
 
         }
@@ -32,11 +33,14 @@
         {
             if (cinema == Model.Cinemas.First())
             {
-                <div id="@cinema.ToString()" class="tab-pane fade in active">
+                <div id="@cinema.Name" class="tab-pane fade in active">
                 <h3 class="text-center">Showtimes</h3>
                 <ul class="list-group center-block">
                     <li class="list-group-item justify-content-between align-items-center">
                         Showtimes will be displayed over here
+                        <a asp-controller="" asp-action="">
+                            <h3>19:30</h3>
+                        </a>
                     </li>
                 </ul>
                 </div>
@@ -52,9 +56,7 @@
                 </ul>
                 </div>
             }
-
         }
-        
     </div>
 </div>
 

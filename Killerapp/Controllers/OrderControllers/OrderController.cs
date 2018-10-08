@@ -11,14 +11,25 @@ namespace Killerapp.Controllers
     public class OrderController : Controller
     {
         OrderLogic orderLogic = new OrderLogic();
-        OrderViewModel orderViewModel;
+        ShowLogic showLogic = new ShowLogic();
         public IActionResult MovieInfo()
         {
-            orderViewModel = new OrderViewModel
+            ChooseShowViewModel model = new ChooseShowViewModel
             {
-                Cinemas = orderLogic.GetCinemas()
+                Cinemas = orderLogic.GetCinemas(),
+                Shows = showLogic.GetShows()
             };
-            return View(orderViewModel);
+            return View(model);
         }
+
+        public IActionResult PickChair()
+        {
+            PickChairViewModel model = new PickChairViewModel
+            {
+                //All the chairs must be set here from the logic class
+            };
+            return View(model);
+        }
+
     }
 }

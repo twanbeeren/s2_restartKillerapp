@@ -6,6 +6,7 @@ namespace Models
 {
     public class Cinema
     {
+        public string Name { get; set; }
         public List<MovieHall> MovieHalls { get; private set; }
         public string Company { get; private set; }
         public string Place { get; private set; }
@@ -14,17 +15,19 @@ namespace Models
         {
             Company = company;
             Place = place;
+            MakeName(company, place);
         }
         public Cinema(List<MovieHall> Halls, string company, string place)
         {
             MovieHalls = Halls;
             Company = company;
             Place = place;
+            MakeName(company, place);
         }
 
-        public override string ToString()
+        private void MakeName(string company, string place)
         {
-            return Company + Place;
+            Name = company + " " + place;
         }
     }
 }

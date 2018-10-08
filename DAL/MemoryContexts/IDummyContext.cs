@@ -10,5 +10,7 @@ namespace DAL.MemoryContexts
         User GetUser();
 
         List<Cinema> GetCinemas();
+
+        List<Show> GetShows();
     }
 }

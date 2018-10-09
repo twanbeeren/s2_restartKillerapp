@@ -30,6 +30,5 @@ namespace Killerapp.Controllers
             };
             return View(model);
         }
-
     }
 }

@@ -6,11 +6,11 @@ namespace Logic
 {
     public class UserLogic
     {
-        private DummyRepo repo = new DummyRepo();
+        private DummyRepo Repo = new DummyRepo();
 
         public bool Login(string name, string password)
         {
-            if(repo.GetUser().Name == name && repo.GetUser().Password == password)
+            if(Repo.GetUser().Name == name && Repo.GetUser().Password == password)
             {
                 return true;
             }

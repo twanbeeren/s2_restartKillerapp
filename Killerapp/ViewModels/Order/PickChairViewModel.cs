@@ -9,6 +9,6 @@ namespace Killerapp.ViewModels.Order
     public class PickChairViewModel
     {
         public List<Ticket> Tickets { get; set; }
-        public List<Chair> Chairs { get; set; }
+        public MovieHall MovieHall{ get; set; }
     }
 }

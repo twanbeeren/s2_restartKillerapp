@@ -7,8 +7,8 @@ namespace DAL.SQLContexts
 {
     interface ISQLContext
     {
-        bool Login(string name, string password);
-        User GetUser(int userId);
+        bool Login(string email, string password);
+        User GetUser(string email);
         List<Movie> GetMovies();
         List<Cinema> GetCinemas();
         List<Show> GetShows(int movieId);

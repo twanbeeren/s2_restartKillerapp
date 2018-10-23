@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Killerapp.ViewModels.Order;
+using Killerapp.ViewModels.OrderViewModels;
 using Logic;
 using Microsoft.AspNetCore.Mvc;
 

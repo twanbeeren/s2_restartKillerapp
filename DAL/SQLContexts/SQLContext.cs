@@ -9,17 +9,17 @@ namespace DAL.SQLContexts
 {
     class SQLContext : ISQLContext
     {
-        private static string connecstring = string.Empty;
-        public bool Login(string name, string password)
+        private static string connecstring = "Data Source=(localdb)/MSSQLLocalDB;Initial Catalog = CinemaApp; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public bool Login(string email, string password)
         {
             int UserExist;
             using (SqlConnection conn = new SqlConnection(connecstring))
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("s2_killerapp_Login", conn))
+                using (SqlCommand cmd = new SqlCommand("dbo.Login", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("in_Username", name);
+                    cmd.Parameters.AddWithValue("in_Email", email);
                     cmd.Parameters.AddWithValue("in_Password", password);
                     cmd.ExecuteNonQuery();
                     UserExist = Convert.ToInt32(cmd.ExecuteScalar());
@@ -36,9 +36,21 @@ namespace DAL.SQLContexts
                 return false;
             }
         }
-        public User GetUser(int userId)
+        public User GetUser(string email)
         {
-            throw new NotImplementedException();
+            User user = new User();
+            using (SqlConnection conn = new SqlConnection(connecstring))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("dbo.GetUser", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("in_Email", email);
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
+            return user;
         }
 
         public List<Movie> GetMovies()

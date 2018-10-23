@@ -28,7 +28,7 @@ namespace DAL.MemoryContexts
         {
             List<Show> shows = new List<Show>
             {
-                new Show(new Cinema("Pathé", "Amsterdam"), new Movie("Deadpool 2", Models.Enumerations.Genre.Action, 110, DateTime.Now, Models.Enumerations.AgeRestriction.Twelve, 4), DateTime.Now)
+                new Show(new Cinema("Pathé", "Amsterdam"), new Movie("Deadpool 2", Models.Enumerations.Genre.Action, 110, DateTime.Now, Models.Enumerations.AgeRestriction.Twelve, 4), DateTime.Now, 8.80)
             };
             return shows;
         }
@@ -58,11 +58,13 @@ namespace DAL.MemoryContexts
         //public MovieHall GetMovieHall()
         //{
         //    List<Chair> chairs = new List<Chair>();
+        //    int chairid = 1;
         //    for (int rownumber = 1; rownumber < 10; rownumber++)
         //    {
         //        for (int chairnumber = 1; chairnumber < 6; chairnumber++)
         //        {
         //            chairs.Add(new Chair(Models.Enumerations.ChairType.Normal, chairid, chairnumber, rownumber));
+        //            chairid++;
         //        }
         //    }
         //    chairs.Add(new Chair(Models.Enumerations.ChairType.Normal, 1, 1, 1));

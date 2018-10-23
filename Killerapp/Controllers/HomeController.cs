@@ -24,10 +24,10 @@ namespace Killerapp.Controllers
                 int id = HttpContext.Session.GetInt32("Id").GetValueOrDefault(0);
                 string name = HttpContext.Session.GetString("Name");
                 User user = new User(id, name);
-                model.User = user;
+                model.CurrentUser = user;
                 return View(model);
             }
-            return View();
+            return View(model);
         }
         
 

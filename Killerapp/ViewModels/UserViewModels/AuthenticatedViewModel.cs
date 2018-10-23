@@ -8,6 +8,6 @@ namespace Killerapp.ViewModels.UserViewModels
 {
     public class AuthenticatedViewModel
     {
-        public User User { get; set; }
+        public User CurrentUser { get; set; }
     }
 }

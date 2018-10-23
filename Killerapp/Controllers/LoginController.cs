@@ -6,6 +6,7 @@ using Killerapp.ViewModels.UserViewModels;
 using Logic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Models;
 
 namespace Killerapp.Controllers
 {
@@ -13,7 +14,7 @@ namespace Killerapp.Controllers
     {
         const string SessionKeyName = "Name";
         const string SessionKeyId = "Id";
-        private UserLogic userLogic;
+        private UserLogic userLogic = new UserLogic();
         public IActionResult Login()
         {
             LoginViewModel model = new LoginViewModel();
@@ -23,11 +24,13 @@ namespace Killerapp.Controllers
         [HttpPost]
         public IActionResult Login(LoginViewModel model)
         {
-            userLogic = new UserLogic();
             if(userLogic.CheckLogin(model.Email, model.Password))
             {
-                HttpContext.Session.SetString(SessionKeyName, userLogic.GetUser(model.Email).Name);
-                HttpContext.Session.SetInt32(SessionKeyId, userLogic.GetUser(model.Email).Id);
+                //User has to be made in SQLContext
+                User CurrentUser = new User();
+                CurrentUser = userLogic.GetUser(model.Email);
+                HttpContext.Session.SetString(SessionKeyName, CurrentUser.Name);
+                HttpContext.Session.SetInt32(SessionKeyId, CurrentUser.Id);
                 return RedirectToAction("Index", "Home");
             }
             else

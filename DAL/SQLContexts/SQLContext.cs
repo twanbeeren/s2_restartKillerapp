@@ -9,10 +9,13 @@ namespace DAL.SQLContexts
 {
     class SQLContext : ISQLContext
     {
-        private static string connecstring = "Data Source=(localdb)/MSSQLLocalDB;Initial Catalog = CinemaApp; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        
+        private static string connecstring = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog = CinemaApp; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+           
         public bool Login(string email, string password)
         {
-            int UserExist;
+            int check = 0;
+            int UserExist = 0;
             using (SqlConnection conn = new SqlConnection(connecstring))
             {
                 conn.Open();
@@ -21,8 +24,7 @@ namespace DAL.SQLContexts
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("in_Email", email);
                     cmd.Parameters.AddWithValue("in_Password", password);
-                    cmd.ExecuteNonQuery();
-                    UserExist = Convert.ToInt32(cmd.ExecuteScalar());
+                    UserExist = (int)cmd.ExecuteScalar();
                 }
                 conn.Close();
             }
@@ -38,7 +40,7 @@ namespace DAL.SQLContexts
         }
         public User GetUser(string email)
         {
-            User user = new User();
+            User user = null;
             using (SqlConnection conn = new SqlConnection(connecstring))
             {
                 conn.Open();
@@ -47,7 +49,20 @@ namespace DAL.SQLContexts
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("in_Email", email);
                     cmd.ExecuteNonQuery();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while(reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            string name = reader.GetString(1);
+                            string password = reader.GetString(2);
+                            int age = reader.GetInt32(4);
+                            bool admin = reader.GetBoolean(5);
+                            user = new User(id, name, password, email, age, admin);
+                        }
+                    }
                 }
+                
                 conn.Close();
             }
             return user;

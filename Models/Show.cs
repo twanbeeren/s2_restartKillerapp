@@ -11,13 +11,15 @@ namespace Models
         public Movie Movie { get; private set; }
         public DateTime Date { get; private set; }
         public int Showtime { get; private set; }
+        public double Price { get; private set; }
 
-        public Show(Cinema cinema, Movie movie, DateTime date)
+        public Show(Cinema cinema, Movie movie, DateTime date, double price)
         {
             Cinema = cinema;
             Movie = movie;
             Date = date;
             Showtime = SetShowtime(movie);
+            Price = price;
         }
 
         private int SetShowtime(Movie movie)

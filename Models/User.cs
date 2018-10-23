@@ -16,6 +16,11 @@ namespace Models
 
         }
 
+        public User(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
         public User(string name, string password, string email, int age, bool admin)
         {
             Name = name;

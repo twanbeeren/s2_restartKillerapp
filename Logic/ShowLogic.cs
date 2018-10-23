@@ -6,11 +6,10 @@ using System.Text;
 
 namespace Logic
 {
-    public class OrderLogic
+    public class ShowLogic
     {
         private DummyRepo Repo = new DummyRepo();
         
-        public List<Cinema> GetCinemas() => Repo.GetCinemas();
-        
+        public List<Show> GetShows() => Repo.GetShows();
     }
 }

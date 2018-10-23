@@ -5,10 +5,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Killerapp.ViewModels.Order
+namespace Killerapp.ViewModels.OrderViewModels
 {
-    public class OrderViewModel
+    public class ChooseShowViewModel
     {
         public List<Cinema> Cinemas { get; set; }
+
+        public List<Show> Shows { get; set; }
     }
 }

@@ -9,12 +9,11 @@ namespace DAL.SQLContexts
 {
     class SQLContext : ISQLContext
     {
-        
+
         private static string connecstring = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog = CinemaApp; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-           
+
         public bool Login(string email, string password)
         {
-            int check = 0;
             int UserExist = 0;
             using (SqlConnection conn = new SqlConnection(connecstring))
             {
@@ -38,6 +37,32 @@ namespace DAL.SQLContexts
                 return false;
             }
         }
+        public void Register(User user)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connecstring))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("dbo.Register", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("in_Name", user.Name);
+                        cmd.Parameters.AddWithValue("in_Password", user.Password);
+                        cmd.Parameters.AddWithValue("in_Email", user.Email);
+                        cmd.Parameters.AddWithValue("in_Age", user.Age);
+                        cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
+        }
+
         public User GetUser(string email)
         {
             User user = null;
@@ -51,7 +76,7 @@ namespace DAL.SQLContexts
                     cmd.ExecuteNonQuery();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        while(reader.Read())
+                        while (reader.Read())
                         {
                             int id = reader.GetInt32(0);
                             string name = reader.GetString(1);
@@ -62,7 +87,7 @@ namespace DAL.SQLContexts
                         }
                     }
                 }
-                
+
                 conn.Close();
             }
             return user;
@@ -70,7 +95,31 @@ namespace DAL.SQLContexts
 
         public List<Movie> GetMovies()
         {
-            throw new NotImplementedException();
+            List<Movie> movies = new List<Movie>();
+            using (SqlConnection conn = new SqlConnection(connecstring))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("dbo.Movies", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            string name = reader.GetString(1);
+                            string password = reader.GetString(2);
+                            int age = reader.GetInt32(4);
+                            bool admin = reader.GetBoolean(5);
+                        }
+                    }
+                }
+
+                conn.Close();
+            }
+
+            return movies;
         }
         public List<Cinema> GetCinemas()
         {
@@ -82,5 +131,32 @@ namespace DAL.SQLContexts
             throw new NotImplementedException();
         }
 
+        //Admin function
+        public void MakeShow(Show show)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connecstring))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("dbo.MakeShow", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("in_MovieHallId", show.MovieHall.Id);
+                        cmd.Parameters.AddWithValue("in_MovieId", show.Movie.Id);
+                        cmd.Parameters.AddWithValue("in_Date", show.Date);
+                        cmd.Parameters.AddWithValue("in_ShowDuration", show.ShowDuration);
+                        cmd.Parameters.AddWithValue("in_Price", show.Price);
+                        cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
+        }
     }
 }

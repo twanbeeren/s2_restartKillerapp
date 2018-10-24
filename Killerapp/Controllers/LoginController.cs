@@ -15,6 +15,7 @@ namespace Killerapp.Controllers
         const string SessionKeyName = "Name";
         const string SessionKeyId = "Id";
         private UserLogic userLogic = new UserLogic();
+        private RegisterViewModel registerViewModel;
         public IActionResult Login()
         {
             LoginViewModel model = new LoginViewModel();
@@ -37,6 +38,27 @@ namespace Killerapp.Controllers
             {
                 return RedirectToAction("Login");
             }
+        }
+
+        public IActionResult Register()
+        {
+            registerViewModel = new RegisterViewModel();
+            return View(registerViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Register(RegisterViewModel model)
+        {
+            User user = new User(model.Name, model.Password, model.Email, model.Age, model.Admin);
+            try
+            {
+                userLogic.Register(user);
+            }
+            catch (Exception)
+            {
+
+            }
+            return RedirectToAction("Login", "Login");
         }
     }
 }

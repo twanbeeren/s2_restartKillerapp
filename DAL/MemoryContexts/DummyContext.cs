@@ -28,7 +28,7 @@ namespace DAL.MemoryContexts
         {
             List<Show> shows = new List<Show>
             {
-                new Show(new Cinema("Pathé", "Amsterdam"), new Movie("Deadpool 2", Models.Enumerations.Genre.Action, 110, DateTime.Now, Models.Enumerations.AgeRestriction.Twelve, 4), DateTime.Now, 8.80)
+                //new Show(new Cinema("Pathé", "Amsterdam"), new MovieHall(3, ), new Movie("Deadpool 2", Models.Enumerations.Genre.Action, 110, DateTime.Now, Models.Enumerations.AgeRestriction.Twelve, 4), DateTime.Now, 8.80)
             };
             return shows;
         }

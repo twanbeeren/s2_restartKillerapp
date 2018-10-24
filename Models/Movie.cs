@@ -7,6 +7,7 @@ namespace Models
 {
     public class Movie
     {
+        public int Id { get; private set; }
         public string Name { get; private set; }
         public Genre Genre { get; private set; }
         public int Duration { get; private set; }
@@ -14,6 +15,16 @@ namespace Models
         public AgeRestriction AgeRestriction { get; private set; }
         public int Rating { get; set; }
 
+        public Movie(int id, string name, Genre genre, int duration, DateTime releaseDate, AgeRestriction ageRestriction, int rating)
+        {
+            Id = id;
+            Name = name;
+            Genre = genre;
+            Duration = duration;
+            ReleaseDate = releaseDate;
+            AgeRestriction = ageRestriction;
+            Rating = rating;
+        }
         public Movie(string name, Genre genre, int duration, DateTime releaseDate, AgeRestriction ageRestriction, int rating)
         {
             Name = name;

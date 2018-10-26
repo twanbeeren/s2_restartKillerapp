@@ -13,9 +13,9 @@ namespace Models
         public int Duration { get; private set; }
         public DateTime ReleaseDate { get; private set; }
         public AgeRestriction AgeRestriction { get; private set; }
-        public int Rating { get; set; }
+        //public int Rating { get; set; }
 
-        public Movie(int id, string name, Genre genre, int duration, DateTime releaseDate, AgeRestriction ageRestriction, int rating)
+        public Movie(int id, string name, Genre genre, int duration, DateTime releaseDate, AgeRestriction ageRestriction)
         {
             Id = id;
             Name = name;
@@ -23,16 +23,14 @@ namespace Models
             Duration = duration;
             ReleaseDate = releaseDate;
             AgeRestriction = ageRestriction;
-            Rating = rating;
         }
-        public Movie(string name, Genre genre, int duration, DateTime releaseDate, AgeRestriction ageRestriction, int rating)
+        public Movie(string name, Genre genre, int duration, DateTime releaseDate, AgeRestriction ageRestriction)
         {
             Name = name;
             Genre = genre;
             Duration = duration;
             ReleaseDate = releaseDate;
             AgeRestriction = ageRestriction;
-            Rating = rating;
         }
 
     }

@@ -22,13 +22,13 @@ namespace Killerapp.Controllers
             {
                 int id = HttpContext.Session.GetInt32("Id").GetValueOrDefault(0);
                 string name = HttpContext.Session.GetString("Name");
-                User user = new User(id, name);
-                model.CurrentUser = user;
+                string email = HttpContext.Session.GetString("Email");
+                model.CurrentUser = userLogic.GetUser(email);
+                model.Admin = HttpContext.Session.GetInt32("Admin").GetValueOrDefault(0);
                 return View(model);
             }
             return View(model);
         }
-        
         
         public IActionResult Contact()
         {

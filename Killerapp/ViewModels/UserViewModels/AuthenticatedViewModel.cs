@@ -9,5 +9,7 @@ namespace Killerapp.ViewModels.UserViewModels
     public class AuthenticatedViewModel
     {
         public User CurrentUser { get; set; }
+
+        public int Admin { get; set; }
     }
 }

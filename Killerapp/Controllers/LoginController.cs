@@ -13,6 +13,8 @@ namespace Killerapp.Controllers
     public class LoginController : Controller
     {
         const string SessionKeyName = "Name";
+        const string SessionKeyEmail = "Email";
+        const string SessionKeyAdmin = "Admin";
         const string SessionKeyId = "Id";
         private UserLogic userLogic = new UserLogic();
         private RegisterViewModel registerViewModel;
@@ -27,10 +29,17 @@ namespace Killerapp.Controllers
         {
             if(userLogic.CheckLogin(model.Email, model.Password))
             {
-                //User has to be made in SQLContext
+                //session can only remember int and not a boolean. 0 is false and 1 is true
+                int admin = 0;
                 User CurrentUser = new User();
                 CurrentUser = userLogic.GetUser(model.Email);
+                if(CurrentUser.Admin == true)
+                {
+                    admin = 1;
+                }
                 HttpContext.Session.SetString(SessionKeyName, CurrentUser.Name);
+                HttpContext.Session.SetString(SessionKeyEmail, CurrentUser.Email);
+                HttpContext.Session.SetInt32(SessionKeyAdmin, admin);
                 HttpContext.Session.SetInt32(SessionKeyId, CurrentUser.Id);
                 return RedirectToAction("Index", "Home");
             }

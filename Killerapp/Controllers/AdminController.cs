@@ -14,22 +14,30 @@ namespace Killerapp.Controllers
         AdminLogic adminLogic = new AdminLogic();
         public IActionResult Index()
         {
-            return View();
+            MakeShowViewModel model = new MakeShowViewModel();
+            return View(model);
         }
+
+        [HttpPost]
+        public IActionResult MakeShow(MakeShowViewModel model)
+        {
+            try
+            {
+                Show show = new Show(model.Cinema, model.MovieHall, model.Movie, model.Date, model.Price);
+                adminLogic.MakeShow(show);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
         //[HttpPost]
-        //public IActionResult MakeShow(MakeShowViewModel model)
+        //public IActionResult GetAvailableShowtimes(MakeShowViewModel model)
         //{
-        //    try
-        //    {
-        //        Show show = new Show();
-        //        adminLogic.MakeShow(show);
-        //        RedirectToAction("Index")
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        throw (ex);
-        //    }
-            
+        //    List<Show> shows = adminLogic.GetAvailableShows(model.MovieHall);
+
         //}
     }
 }

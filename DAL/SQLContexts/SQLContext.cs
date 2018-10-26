@@ -66,6 +66,37 @@ namespace DAL.SQLContexts
         public User GetUser(string email)
         {
             User user = null;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connecstring))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("dbo.GetUser", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("in_Email", email);
+                        cmd.ExecuteNonQuery();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(0);
+                                string name = reader.GetString(1);
+                                string password = reader.GetString(2);
+                                int age = reader.GetInt32(4);
+                                bool admin = reader.GetBoolean(5);
+                                user = new User(id, name, password, email, age, admin);
+                            }
+                        }
+                    }
+
+                    conn.Close();
+                }
+            }
+            catch(Exception)
+            {
+                return null;
+            }
             using (SqlConnection conn = new SqlConnection(connecstring))
             {
                 conn.Open();
@@ -99,7 +130,7 @@ namespace DAL.SQLContexts
             using (SqlConnection conn = new SqlConnection(connecstring))
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("dbo.Movies", conn))
+                using (SqlCommand cmd = new SqlCommand("dbo.GetMovies", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.ExecuteNonQuery();
@@ -109,9 +140,13 @@ namespace DAL.SQLContexts
                         {
                             int id = reader.GetInt32(0);
                             string name = reader.GetString(1);
-                            string password = reader.GetString(2);
-                            int age = reader.GetInt32(4);
-                            bool admin = reader.GetBoolean(5);
+                            string genre = reader.GetString(2);
+                            DateTime date = reader.GetDateTime(3);
+                            string agerestriction = reader.GetString(4);
+                            int duration = reader.GetInt32(5);
+                            string img_url = reader.GetString(6);
+                            //Movie movie = new Movie(id, name, genre, duration, date, agerestriction);
+                            //movies.Add(movie);
                         }
                     }
                 }
@@ -123,7 +158,29 @@ namespace DAL.SQLContexts
         }
         public List<Cinema> GetCinemas()
         {
-            throw new NotImplementedException();
+            List<Cinema> cinemas = new List<Cinema>();
+            using (SqlConnection conn = new SqlConnection(connecstring))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("dbo.GetCinemas", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            string name = reader.GetString(1);
+                            string company = reader.GetString(2);
+                            string place = reader.GetString(3);
+                        }
+                    }
+                }
+
+                conn.Close();
+            }
+            return cinemas;
         }
 
         public List<Show> GetShows(int movieId)

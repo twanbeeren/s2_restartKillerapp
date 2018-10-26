@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,21 +11,25 @@ namespace Killerapp.ViewModels.AdminViewModels
     {
         [Required]
         [Display(Name = "Cinema")]
-        public string CinemaName { get; set; }
+        public Cinema Cinema { get; set; }
 
         [Required]
         [Display(Name = "MovieHallNumber")]
-        public int MovieHallNumber { get; set; }
+        public MovieHall MovieHall { get; set; }
 
         [Required]
         [Display(Name = "Movie")]
-        public string MovieName { get; set; }
+        public Movie Movie { get; set; }
 
         [Required]
         [Display(Name = "DateTime")]
         [DataType(DataType.DateTime)]
         public DateTime Date { get; set; }
 
+        [Required]
+        [Display(Name = "Price")]
+        public double Price { get; set; }
 
+        public List<Cinema> Cinemas { get; set; }
     }
 }

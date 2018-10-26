@@ -22,4 +22,10 @@
     <Folder Include="Views\Assets\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="bundleconfig.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

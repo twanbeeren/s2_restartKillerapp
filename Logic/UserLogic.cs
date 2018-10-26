@@ -6,7 +6,6 @@ namespace Logic
 {
     public class UserLogic
     {
-        private DummyRepo Repo = new DummyRepo();
         private UserRepo userRepo = new UserRepo();
 
         public bool CheckLogin(string name, string password) => userRepo.Login(name, password);

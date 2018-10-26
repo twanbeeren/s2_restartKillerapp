@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
 using System.Data;
+using Models.Enumerations;
 
 namespace DAL.SQLContexts
 {
@@ -97,30 +98,6 @@ namespace DAL.SQLContexts
             {
                 return null;
             }
-            using (SqlConnection conn = new SqlConnection(connecstring))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand("dbo.GetUser", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("in_Email", email);
-                    cmd.ExecuteNonQuery();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            int id = reader.GetInt32(0);
-                            string name = reader.GetString(1);
-                            string password = reader.GetString(2);
-                            int age = reader.GetInt32(4);
-                            bool admin = reader.GetBoolean(5);
-                            user = new User(id, name, password, email, age, admin);
-                        }
-                    }
-                }
-
-                conn.Close();
-            }
             return user;
         }
 
@@ -140,13 +117,13 @@ namespace DAL.SQLContexts
                         {
                             int id = reader.GetInt32(0);
                             string name = reader.GetString(1);
-                            string genre = reader.GetString(2);
+                            Genre genre = (Genre)Enum.ToObject(typeof(Genre), reader.GetInt32(2));
                             DateTime date = reader.GetDateTime(3);
-                            string agerestriction = reader.GetString(4);
+                            AgeRestriction agerestriction = (AgeRestriction)Enum.ToObject(typeof(AgeRestriction), reader.GetInt32(2));
                             int duration = reader.GetInt32(5);
-                            string img_url = reader.GetString(6);
-                            //Movie movie = new Movie(id, name, genre, duration, date, agerestriction);
-                            //movies.Add(movie);
+                            //string img_url = reader.GetString(6);
+                            Movie movie = new Movie(id, name, genre, duration, date, agerestriction);
+                            movies.Add(movie);
                         }
                     }
                 }

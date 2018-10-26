@@ -14,10 +14,12 @@ namespace Killerapp.Controllers
 {
     public class HomeController : Controller
     {
+        MovieLogic movieLogic = new MovieLogic();
         UserLogic userLogic = new UserLogic();
         public IActionResult Index()
         {
-            AuthenticatedViewModel model = new AuthenticatedViewModel();
+            IndexViewModel model = new IndexViewModel();
+            model.Movies = movieLogic.getMovies();
             if (HttpContext.Session.IsAvailable)
             {
                 int id = HttpContext.Session.GetInt32("Id").GetValueOrDefault(0);

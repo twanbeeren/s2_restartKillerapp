@@ -1,4 +1,5 @@
-﻿@model Killerapp.ViewModels.UserViewModels.AuthenticatedViewModel
+﻿@model Killerapp.ViewModels.UserViewModels.IndexViewModel
+@using Models
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -61,43 +62,43 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="movie-card">
-            <div class="movie-header">
-                <img class="movieimg" src="~/images/image1.jpg" />
-                <div class="header-icon-container">
-                    <i class="material-icons header-icon"></i>
+    @foreach (Movie movie in Model.Movies)
+     {
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="movie-card">
+                <div class="movie-header">
+                    <img class="movieimg" src="~/images/image1.jpg" />
+                    <div class="header-icon-container">
+                        <i class="material-icons header-icon"></i>
+                    </div>
+                </div><!--movie-header-->
+                <div class="movie-content">
+                    <div class="movie-content-header">
+                        <a asp-controller="Order" asp-action="MovieInfo">
+                            <h3 class="movie-title">@movie.Name</h3>
+                        </a>
+                        <div class="imax-logo"></div>
+                    </div>
+                    <div class="movie-info">
+                        <div class="info-section">
+                            <label>Released</label>
+                            <span>@movie.ReleaseDate</span>
+                        </div><!--date,time-->
+                        <div class="info-section">
+                            <label>Genre</label>
+                            <span>@movie.Genre</span>
+                        </div><!--screen-->
+                        <div class="info-section">
+                            <label>Age</label>
+                            <span>@movie.AgeRestriction</span>
+                        </div>
+                    </div>
                 </div>
-            </div><!--movie-header-->
-            <div class="movie-content">
-                <div class="movie-content-header">
-                    <a asp-controller="Order" asp-action="MovieInfo">
-                        <h3 class="movie-title">Movie#1</h3>
-                    </a>
-                    <div class="imax-logo"></div>
-                </div>
-                <div class="movie-info">
-                    <div class="info-section">
-                        <label>Date & Time</label>
-                        <span>Sun 8 Sept - 10:00PM</span>
-                    </div><!--date,time-->
-                    <div class="info-section">
-                        <label>Screen</label>
-                        <span>03</span>
-                    </div><!--screen-->
-                    <div class="info-section">
-                        <label>Row</label>
-                        <span>F</span>
-                    </div><!--row-->
-                    <div class="info-section">
-                        <label>Seat</label>
-                        <span>21,22</span>
-                    </div><!--seat-->
-                </div>
-            </div><!--movie-content-->
-        </div><!--movie-card-->
-    </div>
+            </div>
+        </div>
+     }
 </div>
+    
 
 
 @section Scripts{

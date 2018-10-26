@@ -6,10 +6,12 @@ using Models;
 
 namespace Killerapp.ViewModels.UserViewModels
 {
-    public class AuthenticatedViewModel
+    public class IndexViewModel
     {
         public User CurrentUser { get; set; }
 
         public int Admin { get; set; }
+
+        public List<Movie> Movies { get; set; }
     }
 }

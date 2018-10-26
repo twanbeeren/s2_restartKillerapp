@@ -16,6 +16,5 @@ namespace Models.Enumerations
         Crime,
         Western,
         Thriller
-
     }
 }

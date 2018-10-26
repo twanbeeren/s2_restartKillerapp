@@ -1,96 +1,106 @@
-﻿@model Killerapp.ViewModels.UserViewModels.AuthenticatedViewModel
+﻿@model Killerapp.ViewModels.UserViewModels.IndexViewModel
+@using Models
 @{
     ViewData["Title"] = "Home Page";
 }
+@section SessionUser{
+    @if (Model.CurrentUser != null)
+    {
+        <li>Welkom @Model.CurrentUser.Name</li>
+    }
+    @if(Model.CurrentUser != null && Model.Admin == 1)
+    {
+        <li><a asp-area="" asp-controller="Admin" asp-action="Index">Admin</a></li>
+    }
+}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img class="img-responsive" src="~/images/image1.jpg" alt="...">
-                                <div class="carousel-caption">
-                                    One Image
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="img-responsive" src="~/images/image2.jpg" alt="...">
-                                <div class="carousel-caption">
-                                    Another Image
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="img-responsive" src="~/images/image3.jpg" alt="...">
-                                <div class="carousel-caption">
-                                    Another Image
-                                </div>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img class="img-responsive" src="~/images/image1.jpg" alt="...">
+                            <div class="carousel-caption">
+                                One Image
                             </div>
                         </div>
-                        <!-- Controls -->
-                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
+                        <div class="item">
+                            <img class="img-responsive" src="~/images/image2.jpg" alt="...">
+                            <div class="carousel-caption">
+                                Another Image
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="img-responsive" src="~/images/image3.jpg" alt="...">
+                            <div class="carousel-caption">
+                                Another Image
+                            </div>
+                        </div>
                     </div>
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary active">All</button>
-                <button type="button" class="btn btn-primary">2D</button>
-                <button type="button" class="btn btn-primary">3D</button>
-            </div>
+</div>
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary active">All</button>
+            <button type="button" class="btn btn-primary">2D</button>
+            <button type="button" class="btn btn-primary">3D</button>
         </div>
     </div>
-    <div class="row">
+</div>
+<div class="row">
+    @foreach (Movie movie in Model.Movies)
+     {
         <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="movie-card">
                 <div class="movie-header">
                     <img class="movieimg" src="~/images/image1.jpg" />
                     <div class="header-icon-container">
-                          <i class="material-icons header-icon"></i>
+                        <i class="material-icons header-icon"></i>
                     </div>
                 </div><!--movie-header-->
                 <div class="movie-content">
                     <div class="movie-content-header">
                         <a asp-controller="Order" asp-action="MovieInfo">
-                            <h3 class="movie-title">Movie#1</h3>
+                            <h3 class="movie-title">@movie.Name</h3>
                         </a>
                         <div class="imax-logo"></div>
                     </div>
                     <div class="movie-info">
                         <div class="info-section">
-                            <label>Date & Time</label>
-                            <span>Sun 8 Sept - 10:00PM</span>
+                            <label>Released</label>
+                            <span>@movie.ReleaseDate</span>
                         </div><!--date,time-->
                         <div class="info-section">
-                            <label>Screen</label>
-                            <span>03</span>
+                            <label>Genre</label>
+                            <span>@movie.Genre</span>
                         </div><!--screen-->
                         <div class="info-section">
-                            <label>Row</label>
-                            <span>F</span>
-                        </div><!--row-->
-                        <div class="info-section">
-                            <label>Seat</label>
-                            <span>21,22</span>
-                        </div><!--seat-->
+                            <label>Age</label>
+                            <span>@movie.AgeRestriction</span>
+                        </div>
                     </div>
-                </div><!--movie-content-->
-            </div><!--movie-card-->
+                </div>
+            </div>
         </div>
-    </div>
+     }
+</div>
+    
 
 
 @section Scripts{
 
- }
+}

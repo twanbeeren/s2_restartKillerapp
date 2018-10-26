@@ -11,6 +11,7 @@ namespace DAL.Repositories
         private readonly ISQLContext SQLContext = new SQLContext();
 
         public bool Login(string email, string password) => SQLContext.Login(email, password);
+        public void Register(User user) => SQLContext.Register(user);
         public User GetUser(string email) => SQLContext.GetUser(email);
     }
 }

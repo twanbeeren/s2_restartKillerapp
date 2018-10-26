@@ -14,37 +14,24 @@ namespace Killerapp.Controllers
 {
     public class HomeController : Controller
     {
+        MovieLogic movieLogic = new MovieLogic();
         UserLogic userLogic = new UserLogic();
-        RegisterViewModel registerViewModel;
         public IActionResult Index()
         {
-            AuthenticatedViewModel model = new AuthenticatedViewModel();
+            IndexViewModel model = new IndexViewModel();
+            model.Movies = movieLogic.getMovies();
             if (HttpContext.Session.IsAvailable)
             {
                 int id = HttpContext.Session.GetInt32("Id").GetValueOrDefault(0);
                 string name = HttpContext.Session.GetString("Name");
-                User user = new User(id, name);
-                model.User = user;
+                string email = HttpContext.Session.GetString("Email");
+                model.CurrentUser = userLogic.GetUser(email);
+                model.Admin = HttpContext.Session.GetInt32("Admin").GetValueOrDefault(0);
                 return View(model);
             }
-            return View();
+            return View(model);
         }
         
-
-        public IActionResult Register()
-        {
-            registerViewModel = new RegisterViewModel();
-            return View(registerViewModel);
-        }
-
-        [HttpPost]
-        public IActionResult Register(RegisterViewModel model)
-        {
-            User user = new User(model.Name, model.Password, model.Email, model.Age, model.Admin);
-            //try{userLogic.Register(user);}
-            return RedirectToAction("Login","Login");
-        }
-
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";

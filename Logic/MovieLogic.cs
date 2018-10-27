@@ -10,6 +10,7 @@ namespace Logic
     {
         private MovieRepo movieRepo = new MovieRepo();
 
+        public Movie GetMovieOnId(int movieId) => movieRepo.GetMovieOnId(movieId);
         public List<Movie> getMovies() => movieRepo.getMovies();
     }
 }

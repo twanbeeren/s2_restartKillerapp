@@ -9,6 +9,7 @@ namespace Killerapp.ViewModels.OrderViewModels
 {
     public class ChooseShowViewModel
     {
+        public Movie Movie { get; set; }
         public List<Cinema> Cinemas { get; set; }
 
         public List<Show> Shows { get; set; }

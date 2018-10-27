@@ -10,6 +10,7 @@ namespace DAL.SQLContexts
         bool Login(string email, string password);
         void Register(User user);
         User GetUser(string email);
+        Movie GetMovieOnId(int movieId);
         List<Movie> GetMovies();
         List<Cinema> GetCinemas();
         List<Show> GetShows(int movieId);

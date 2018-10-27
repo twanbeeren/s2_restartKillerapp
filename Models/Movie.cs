@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Text;
 using Models.Enumerations;
 
@@ -17,29 +18,38 @@ namespace Models
 
         public int Duration { get; private set; }
 
-        public DateTime ReleaseDate { get; private set; }
+        public string ReleaseDate { get; private set; }
 
         [EnumDataType(typeof(AgeRestriction))]
         public AgeRestriction AgeRestriction { get; private set; }
 
         //public int Rating { get; set; }
 
-        public Movie(int id, string name, Genre genre, int duration, DateTime releaseDate, AgeRestriction ageRestriction)
+        public Movie(int id, string name, Genre genre, DateTime releaseDate, AgeRestriction ageRestriction, int duration)
         {
             Id = id;
             Name = name;
             Genre = genre;
-            Duration = duration;
-            ReleaseDate = releaseDate;
+            ReleaseDate = SetDate(releaseDate);
             AgeRestriction = ageRestriction;
+            Duration = duration;
         }
-        public Movie(string name, Genre genre, int duration, DateTime releaseDate, AgeRestriction ageRestriction)
+        public Movie(string name, Genre genre, DateTime releaseDate, AgeRestriction ageRestriction, int duration)
         {
             Name = name;
             Genre = genre;
-            Duration = duration;
-            ReleaseDate = releaseDate;
+            ReleaseDate = SetDate(releaseDate);
             AgeRestriction = ageRestriction;
+            Duration = duration;
+        }
+
+        private string SetDate(DateTime dateTime)
+        {
+            dateTime = DateTime.ParseExact(dateTime.ToString(), "MM/dd/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture);
+
+            string date = dateTime.ToString("dd/M/yyyy", CultureInfo.InvariantCulture);
+
+            return date;
         }
 
     }

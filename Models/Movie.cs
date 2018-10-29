@@ -45,10 +45,7 @@ namespace Models
 
         private string SetDate(DateTime dateTime)
         {
-            dateTime = DateTime.ParseExact(dateTime.ToString(), "MM/dd/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture);
-
-            string date = dateTime.ToString("dd/M/yyyy", CultureInfo.InvariantCulture);
-
+            string date = dateTime.ToString("dddd, dd MMMM yyyy");
             return date;
         }
 

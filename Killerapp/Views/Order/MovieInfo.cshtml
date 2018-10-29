@@ -5,9 +5,12 @@
         <div class="movieDetails">
             <img src="~/images/image1.jpg" />
             <ul>
-                <li>Moviename</li>
+                <li>@Model.Movie.Name</li>
+                <li>@Model.Movie.Genre</li>
+                <li>@Model.Movie.ReleaseDate</li>
+                <li>@Model.Movie.Duration</li>
             </ul>
-            <h2>Rating: </h2>
+            @*<h2>Rating: </h2>*@
         </div>
     </div>
 </div>

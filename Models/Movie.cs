@@ -25,6 +25,10 @@ namespace Models
 
         //public int Rating { get; set; }
 
+        public Movie()
+        {
+
+        }
         public Movie(int id, string name, Genre genre, DateTime releaseDate, AgeRestriction ageRestriction, int duration)
         {
             Id = id;

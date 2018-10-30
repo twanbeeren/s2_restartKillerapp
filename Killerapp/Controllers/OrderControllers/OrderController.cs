@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Serialization;
 using Killerapp.ViewModels.OrderViewModels;
 using Killerapp.ViewModels.UserViewModels;
 using Logic;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Newtonsoft.Json;
 
 namespace Killerapp.Controllers
 {
@@ -19,11 +21,18 @@ namespace Killerapp.Controllers
         {
             ChooseShowViewModel model = new ChooseShowViewModel
             {
-                Movie = movieLogic.GetMovieOnId(movieId),
+                Movie = movieLogic.GetMovieOnId(movieId),  
                 Cinemas = orderLogic.GetCinemas(),
-                Shows = showLogic.GetShows()
             };
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Shows(int movieId, int cinemaId)
+        {
+            List<Show> shows = showLogic.GetShows(movieId, cinemaId);
+            var json = JsonConvert.SerializeObject(shows);
+            return Json(json);
         }
 
         public IActionResult PickChair()

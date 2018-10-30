@@ -100,7 +100,82 @@ namespace DAL.SQLContexts
             }
             return user;
         }
+        public Cinema GetCinemaOnId(int cinemaId)
+        {
+            Cinema cinema = null;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connecstring))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("dbo.GetCinemaOnId", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("in_Id", cinemaId);
+                        cmd.ExecuteNonQuery();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(0);
+                                string name = reader.GetString(1);
+                                string company = reader.GetString(2);
+                                string place = reader.GetString(3);
+                                cinema = new Cinema(id, name, company, place);
+                            }
+                        }
+                    }
 
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return cinema;
+        }
+        public MovieHall GetMovieHallOnId(int moviehallId)
+        {
+            MovieHall movieHall = null;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connecstring))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("dbo.GetMovieHallOnId", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("in_Id", moviehallId);
+                        cmd.ExecuteNonQuery();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(0);
+                                int cinemaId = reader.GetInt32(1);
+                                int hallNumber = reader.GetInt32(2);
+                                //When I make Rows these two values are needed
+                                int maxRow = reader.GetInt32(3);
+                                int maxChairsInRow = reader.GetInt32(4);
+                                int capacity = reader.GetInt32(5);
+                                Cinema cinema = new Cinema();
+                                cinema = this.GetCinemaOnId(cinemaId);
+                                movieHall = new MovieHall(id, cinema, hallNumber, capacity);
+                            }
+                        }
+                    }
+
+                    conn.Close();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return movieHall;
+        }
         public Movie GetMovieOnId(int movieId)
         {
             Movie movie = null;
@@ -192,9 +267,44 @@ namespace DAL.SQLContexts
             return cinemas;
         }
 
-        public List<Show> GetShows(int movieId)
+        public List<Show> GetShows(int movieId, int cinemaId)
         {
-            throw new NotImplementedException();
+            List<Show> shows = new List<Show>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connecstring))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("dbo.GetShowsOnId", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("in_MovieId", movieId);
+                        cmd.Parameters.AddWithValue("in_CinemaId", cinemaId);
+                        cmd.ExecuteNonQuery();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int showId = reader.GetInt32(0);
+                                int movieHallId = reader.GetInt32(1);
+                                DateTime date = reader.GetDateTime(2);
+                                double price = reader.GetDouble(3);
+                                MovieHall movieHall = new MovieHall();
+                                Movie movie = new Movie();
+                                movieHall = this.GetMovieHallOnId(movieHallId);
+                                movie = this.GetMovieOnId(movieId);
+                                Show show = new Show(movieHall, movie, date, price);
+                            }
+                        }
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            return shows;
         }
 
         //Admin function

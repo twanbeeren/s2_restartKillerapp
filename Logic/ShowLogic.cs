@@ -8,8 +8,7 @@ namespace Logic
 {
     public class ShowLogic
     {
-        private DummyRepo Repo = new DummyRepo();
-        
-        public List<Show> GetShows() => Repo.GetShows();
+        private ShowRepo Repo = new ShowRepo();
+        public List<Show> GetShows(int movieId, int cinemaId) => Repo.GetShows(movieId, cinemaId);
     }
 }

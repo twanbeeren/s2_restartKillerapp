@@ -19,7 +19,7 @@ namespace Killerapp.Controllers
         public IActionResult Index()
         {
             IndexViewModel model = new IndexViewModel();
-            model.Movies = movieLogic.getMovies();
+            model.Movies = movieLogic.GetMovies();
             if (HttpContext.Session.IsAvailable)
             {
                 int id = HttpContext.Session.GetInt32("Id").GetValueOrDefault(0);

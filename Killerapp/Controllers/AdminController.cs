@@ -23,7 +23,7 @@ namespace Killerapp.Controllers
         {
             try
             {
-                Show show = new Show(model.Cinema, model.MovieHall, model.Movie, model.Date, model.Price);
+                Show show = new Show(model.MovieHall, model.Movie, model.Date, model.Price);
                 adminLogic.MakeShow(show);
                 return RedirectToAction("Index");
             }

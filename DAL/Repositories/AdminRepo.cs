@@ -10,8 +10,8 @@ namespace DAL.Repositories
     {
         private readonly ISQLContext SQLContext = new SQLContext();
 
-        public void MakeShow(Show show) => SQLContext.MakeShow(show);
+        public void CreateShow(Show show) => SQLContext.CreateShow(show);
 
-        public void MakeCinema(Cinema cinema) => SQLContext.MakeCinema(cinema));
+        public void CreateCinema(Cinema cinema) => SQLContext.CreateCinema(cinema);
     }
 }

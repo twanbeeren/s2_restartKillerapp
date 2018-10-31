@@ -308,14 +308,14 @@ namespace DAL.SQLContexts
         }
 
         //Admin function
-        public void MakeShow(Show show)
+        public void CreateShow(Show show)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connecstring))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("dbo.MakeShow", conn))
+                    using (SqlCommand cmd = new SqlCommand("dbo.CreateShow", conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("in_MovieHallId", show.MovieHall.Id);
@@ -334,14 +334,14 @@ namespace DAL.SQLContexts
             }
 
         }
-        public void MakeCinema(Cinema cinema)
+        public void CreateCinema(Cinema cinema)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connecstring))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("dbo.MakeCinema", conn))
+                    using (SqlCommand cmd = new SqlCommand("dbo.CreateCinema", conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("in_Name", cinema.Name);

@@ -28,19 +28,19 @@ namespace Killerapp.Controllers
             
         }
         [HttpGet]
-        public IActionResult MakeCinema()
+        public IActionResult CreateCinema()
         {
-            MakeCinemaViewModel model = new MakeCinemaViewModel();
+            CreateCinemaViewModel model = new CreateCinemaViewModel();
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult MakeCinema(MakeCinemaViewModel model)
+        public IActionResult CreateCinema(CreateCinemaViewModel model)
         {
             try
             {
                 Cinema cinema = new Cinema(model.Company, model.Place);
-                adminLogic.MakeCinema(cinema);
+                adminLogic.CreateCinema(cinema);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -50,7 +50,7 @@ namespace Killerapp.Controllers
         }
 
         [HttpGet]
-        public IActionResult MakeShow()
+        public IActionResult CreateShow()
         {
             MakeShowViewModel model = new MakeShowViewModel
             {
@@ -60,12 +60,12 @@ namespace Killerapp.Controllers
         }
 
         [HttpPost]
-        public IActionResult MakeShow(MakeShowViewModel model)
+        public IActionResult CreateShow(MakeShowViewModel model)
         {
             try
             {
                 Show show = new Show(model.MovieHall, model.Movie, model.Date, model.Price);
-                adminLogic.MakeShow(show);
+                adminLogic.CreateShow(show);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

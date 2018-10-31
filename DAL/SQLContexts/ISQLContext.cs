@@ -16,7 +16,7 @@ namespace DAL.SQLContexts
         List<Cinema> GetCinemas();
         List<Show> GetShows(int movieId, int cinemaId);
         //Admin functions may need a special SQLContext
-        void MakeShow(Show show);
-        void MakeCinema(Cinema cinema);
+        void CreateShow(Show show);
+        void CreateCinema(Cinema cinema);
     }
 }

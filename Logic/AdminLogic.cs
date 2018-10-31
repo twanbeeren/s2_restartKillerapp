@@ -10,8 +10,8 @@ namespace Logic
     {
         private AdminRepo adminRepo = new AdminRepo();
 
-        public void MakeShow(Show show) => adminRepo.MakeShow(show);
+        public void CreateShow(Show show) => adminRepo.CreateShow(show);
 
-        public void MakeCinema(Cinema cinema) => adminRepo.MakeCinema(cinema);
+        public void CreateCinema(Cinema cinema) => adminRepo.CreateCinema(cinema);
     }
 }

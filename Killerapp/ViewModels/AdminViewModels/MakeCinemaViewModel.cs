@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Killerapp.ViewModels.AdminViewModels
 {
-    public class MakeCinemaViewModel
+    public class CreateCinemaViewModel
     {
         [Required]
         [Display(Name = "Name")]

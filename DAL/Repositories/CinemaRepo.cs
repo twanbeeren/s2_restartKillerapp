@@ -6,12 +6,10 @@ using System.Text;
 
 namespace DAL.Repositories
 {
-    public class AdminRepo
+    public class CinemaRepo
     {
         private readonly ISQLContext SQLContext = new SQLContext();
 
-        public void MakeShow(Show show) => SQLContext.MakeShow(show);
-
-        public void MakeCinema(Cinema cinema) => SQLContext.MakeCinema(cinema));
+        public List<Cinema> GetCinemas() => SQLContext.GetCinemas();
     }
 }

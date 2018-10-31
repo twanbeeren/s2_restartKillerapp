@@ -334,5 +334,29 @@ namespace DAL.SQLContexts
             }
 
         }
+        public void MakeCinema(Cinema cinema)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connecstring))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("dbo.MakeCinema", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("in_Name", cinema.Name);
+                        cmd.Parameters.AddWithValue("in_Company", cinema.Company);
+                        cmd.Parameters.AddWithValue("in_Place", cinema.Place);
+                        cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
+        }
     }
 }

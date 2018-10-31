@@ -5,16 +5,57 @@ using System.Threading.Tasks;
 using Killerapp.ViewModels.AdminViewModels;
 using Logic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Models;
 
 namespace Killerapp.Controllers
 {
     public class AdminController : Controller
     {
+        OrderLogic orderLogic = new OrderLogic();
         AdminLogic adminLogic = new AdminLogic();
         public IActionResult Index()
         {
-            MakeShowViewModel model = new MakeShowViewModel();
+            //Check if user is still logged in
+            if(HttpContext.Session.GetInt32("Id").GetValueOrDefault(0) != 0)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
+        }
+        [HttpGet]
+        public IActionResult MakeCinema()
+        {
+            MakeCinemaViewModel model = new MakeCinemaViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult MakeCinema(MakeCinemaViewModel model)
+        {
+            try
+            {
+                Cinema cinema = new Cinema(model.Company, model.Place);
+                adminLogic.MakeCinema(cinema);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult MakeShow()
+        {
+            MakeShowViewModel model = new MakeShowViewModel
+            {
+                Cinemas = orderLogic.GetCinemas()
+            };
             return View(model);
         }
 
@@ -32,6 +73,7 @@ namespace Killerapp.Controllers
                 throw (ex);
             }
         }
+        
 
         //[HttpPost]
         //public IActionResult GetAvailableShowtimes(MakeShowViewModel model)

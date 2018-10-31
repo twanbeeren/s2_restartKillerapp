@@ -21,12 +21,13 @@ namespace Killerapp.Controllers
         {
             ChooseShowViewModel model = new ChooseShowViewModel
             {
-                Movie = movieLogic.GetMovieOnId(movieId),  
+                Movie = movieLogic.GetMovieOnId(movieId),
                 Cinemas = orderLogic.GetCinemas(),
             };
             return View(model);
         }
 
+        [Route("api/order")]
         [HttpGet]
         public IActionResult Shows(int movieId, int cinemaId)
         {

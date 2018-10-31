@@ -11,5 +11,7 @@ namespace Logic
         private AdminRepo adminRepo = new AdminRepo();
 
         public void MakeShow(Show show) => adminRepo.MakeShow(show);
+
+        public void MakeCinema(Cinema cinema) => adminRepo.MakeCinema(cinema);
     }
 }

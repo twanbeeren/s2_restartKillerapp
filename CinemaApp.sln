@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{C824613F-A20F-4891-8337-E4A644D6C1AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{344E7B71-8907-4287-9176-0EC93682AFBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj", "{344E7B71-8907-4287-9176-0EC93682AFBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTesting", "UnitTesting\UnitTesting.csproj", "{0987461A-9DB3-4FF3-B2E8-908FEBF39D92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{344E7B71-8907-4287-9176-0EC93682AFBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{344E7B71-8907-4287-9176-0EC93682AFBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{344E7B71-8907-4287-9176-0EC93682AFBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0987461A-9DB3-4FF3-B2E8-908FEBF39D92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0987461A-9DB3-4FF3-B2E8-908FEBF39D92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0987461A-9DB3-4FF3-B2E8-908FEBF39D92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0987461A-9DB3-4FF3-B2E8-908FEBF39D92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

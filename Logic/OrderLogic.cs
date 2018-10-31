@@ -8,9 +8,9 @@ namespace Logic
 {
     public class OrderLogic
     {
-        private DummyRepo Repo = new DummyRepo();
-        
-        public List<Cinema> GetCinemas() => Repo.GetCinemas();
-        
+        private CinemaRepo CinemaRepo  = new CinemaRepo();
+
+        public List<Cinema> GetCinemas() => CinemaRepo.GetCinemas();
+
     }
 }

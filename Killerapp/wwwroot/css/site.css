@@ -94,9 +94,13 @@ a {
     text-decoration: none;
 }
 
-    a:hover {
-        color: #6ABCEA;
-    }
+a:hover {
+    color: #6ABCEA;
+    cursor: pointer;
+}
+ul > li > a:hover{
+    cursor: pointer;
+}
 
 .movie-card {
     background: #ffffff;
@@ -230,6 +234,14 @@ a {
     text-align: center;
 }
 
+.form-group > input {
+    width: 80%;
+    margin-left: 5%;
+}
+.form-group > button{
+    margin: 20px;
+}
+
 .movieDetails {
     background-color: rgba(150, 150, 150, 0.5);
     width: 80%;
@@ -247,7 +259,6 @@ a {
     align-self: center;
 }
 .movieDetails > ul{
-    background-color: purple;
     align-self: center;
 }
 .movieDetails > h2{
@@ -283,7 +294,23 @@ a {
     width: 100%;
     height: 100%;
 }
+.registerform{
 
+}
+
+.cinemaform{
+    background-color: lightyellow;
+    width: 100%;
+    border: 2px solid RGB(20, 20, 20);
+    border-radius: 5px;
+}
+
+.movieInvites {
+    background-color: lightyellow;
+    width: 100%;
+    border: 2px solid RGB(20, 20, 20);
+    border-radius: 5px;
+}
 
 
 

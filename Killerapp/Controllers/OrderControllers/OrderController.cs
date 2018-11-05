@@ -35,6 +35,31 @@ namespace Killerapp.Controllers
             var json = JsonConvert.SerializeObject(shows);
             return Json(json);
         }
+        [HttpGet]
+        public IActionResult PickTicket(int showId)
+        {
+            PickTicketsViewModel model = new PickTicketsViewModel
+            {
+                Show = showLogic.GetShowOnId(showId)
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult PickTicket(PickTicketsViewModel model)
+        {
+            for(int count = 0; count < model.NumberOfTickets; count++)
+            {
+                Ticket ticket = new Ticket(model.Show);
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult AddFriend(int userId)
+        {
+            return RedirectToAction("Pickticket");
+        }
 
         public IActionResult PickChair()
         {

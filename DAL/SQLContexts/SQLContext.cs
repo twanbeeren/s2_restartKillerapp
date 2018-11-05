@@ -208,6 +208,40 @@ namespace DAL.SQLContexts
 
             return movie;
         }
+        public Show GetShowOnId(int showId)
+        {
+            Show show = null;
+            using (SqlConnection conn = new SqlConnection(connecstring))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("dbo.GetShowOnId", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("in_Id", showId);
+                    cmd.ExecuteNonQuery();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            int movieHallId = reader.GetInt32(1);
+                            int movieId = reader.GetInt32(2);
+                            DateTime date = reader.GetDateTime(3);
+                            int showDuration = reader.GetInt32(4);
+                            double price = reader.GetDouble(5);
+
+                            MovieHall movieHall = GetMovieHallOnId(movieHallId);
+                            Movie movie = GetMovieOnId(movieId);
+                            show = new Show(movieHall, movie, date, price);
+                        }
+                    }
+                }
+
+                conn.Close();
+            }
+
+            return show;
+        }
         public List<Movie> GetMovies()
         {
             List<Movie> movies = new List<Movie>();
@@ -258,6 +292,8 @@ namespace DAL.SQLContexts
                             string name = reader.GetString(1);
                             string company = reader.GetString(2);
                             string place = reader.GetString(3);
+                            Cinema cinema = new Cinema(id, name, company, place);
+                            cinemas.Add(cinema);
                         }
                     }
                 }
@@ -266,7 +302,6 @@ namespace DAL.SQLContexts
             }
             return cinemas;
         }
-
         public List<Show> GetShows(int movieId, int cinemaId)
         {
             List<Show> shows = new List<Show>();
@@ -306,7 +341,6 @@ namespace DAL.SQLContexts
             }
             return shows;
         }
-
         //Admin function
         public void CreateShow(Show show)
         {

@@ -52,7 +52,7 @@ namespace Killerapp.Controllers
         [HttpGet]
         public IActionResult CreateShow()
         {
-            MakeShowViewModel model = new MakeShowViewModel
+            CreateShowViewModel model = new CreateShowViewModel
             {
                 Cinemas = orderLogic.GetCinemas()
             };
@@ -60,7 +60,7 @@ namespace Killerapp.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateShow(MakeShowViewModel model)
+        public IActionResult CreateShow(CreateShowViewModel model)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace Killerapp.Controllers
         
 
         //[HttpPost]
-        //public IActionResult GetAvailableShowtimes(MakeShowViewModel model)
+        //public IActionResult GetAvailableShowtimes(CreateShowViewModel model)
         //{
         //    List<Show> shows = adminLogic.GetAvailableShows(model.MovieHall);
 

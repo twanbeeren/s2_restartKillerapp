@@ -1,0 +1,44 @@
+﻿@model Killerapp.ViewModels.AdminViewModels.CreateShowViewModel
+@using Models
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-lg-3">
+        <div class="cinemalist">
+            <ul>
+                @foreach (Cinema cinema in Model.Cinemas)
+                {
+                    <li><a id="@cinema.Name" onclick="getAvailableShows(this.value)">@cinema.Name</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-9">
+        <div class="showtimes">
+            <ul id="shows">
+
+            </ul>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        var $orders = $('#shows');
+        $(function getAvailableShows()){
+            $.ajax({
+                type: 'Get',
+                url: '/api/order',
+                succes: function (shows) {
+                    $.each(shows, function (i, show)){
+                        $orders.append('<li>Showtime: '+show.Date+'</li>');
+                    }
+                }
+            })
+
+        };
+    </script>
+}
+
+

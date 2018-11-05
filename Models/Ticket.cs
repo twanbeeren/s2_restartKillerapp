@@ -10,16 +10,14 @@ namespace Models
         public User User { get; private set; }
         public Chair Chair { get; set; }
 
-        public Ticket(User user, Show show, Chair chair)
+        public Ticket(User user, Show show)
         {
             User = user;
             Show = show;
-            Chair = chair;
         }
-        public Ticket(Show show, Chair chair)
+        public Ticket(Show show)
         {
             Show = show;
-            Chair = chair;
         }
         
     }

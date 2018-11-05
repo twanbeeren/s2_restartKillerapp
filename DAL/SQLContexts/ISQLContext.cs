@@ -14,6 +14,7 @@ namespace DAL.SQLContexts
         Movie GetMovieOnId(int movieId);
         List<Movie> GetMovies();
         List<Cinema> GetCinemas();
+        Show GetShowOnId(int showId);
         List<Show> GetShows(int movieId, int cinemaId);
         //Admin functions may need a special SQLContext
         void CreateShow(Show show);

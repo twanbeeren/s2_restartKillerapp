@@ -17,6 +17,8 @@ namespace Killerapp.ViewModels.AdminViewModels
         [Display(Name = "Place")]
         public string Place { get; set; }
 
+        public int NumberOfMovieHalls { get; set; }
+
         
     }
 }

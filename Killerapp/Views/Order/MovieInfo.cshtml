@@ -15,52 +15,31 @@
     </div>
 </div>
 <div class="row">
-    <ul class="nav nav-pills nav-justified">
-        @*I should check for all the shows so its easier to display the showtimes, while I still know in wich cinema the movie will be shown*@
-        @foreach (Cinema cinema in Model.Cinemas)
-        {
-            if(cinema == Model.Cinemas.First())
-            {
-                <li class="active"><a data-toggle="pill" href="#@cinema.Name">@cinema.Name</a></li>
-            }
-            else
-            {
-                <li><a data-toggle="pill" href="#@cinema.Name">@cinema.Name</a></li>
-            }
-
-        }
-    </ul>
-
-    <div class="tab-content">
-        @foreach(Cinema cinema in Model.Cinemas)
-        {
-            if (cinema == Model.Cinemas.First())
-            {
-                <div id="@cinema.Name" class="tab-pane fade in active">
-                <h3 class="text-center">Showtimes</h3>
-                <ul class="list-group center-block">
-                    <li class="list-group-item justify-content-between align-items-center">
-                        Showtimes will be displayed over here
-                        <a asp-controller="Order" asp-action="PickChair">
-                            <h3>19:30</h3>
-                        </a>
-                    </li>
-                </ul>
-                </div>
-            }
-            else
-            {
-                <div id="@cinema.ToString()" class="tab-pane fade">
-                <h3 class="text-center">Showtimes</h3>
-                <ul class="list-group center-block">
-                    <li class="list-group-item justify-content-between align-items-center">
-                        Showtimes will be displayed over here
-                    </li>
-                </ul>
-                </div>
-            }
-        }
+    <div class="col-lg-3">
+        <div class="cinemalist">
+            <ul>
+                @foreach (Cinema cinema in Model.Cinemas)
+                {
+                    <li><a id="@cinema.Name" onclick="getAvailableShows(this.value)">@cinema.Name</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-9">
+        <div id="shows" class="showtimes">
+            
+        </div>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+        function(getAvailableShows) {
+            var jsonData = $.getJSON("api/order")
+            document.getElementById("shows").innerHTML(jsonData)
+        }
+        
+    </script>
+}
 
 

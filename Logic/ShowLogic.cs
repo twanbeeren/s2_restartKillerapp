@@ -10,5 +10,7 @@ namespace Logic
     {
         private ShowRepo Repo = new ShowRepo();
         public List<Show> GetShows(int movieId, int cinemaId) => Repo.GetShows(movieId, cinemaId);
+
+        public Show GetShowOnId(int showId) => Repo.GetShowOnId(showId);
     }
 }

@@ -11,5 +11,7 @@ namespace DAL.Repositories
         private readonly ISQLContext SQLContext = new SQLContext();
 
         public List<Show> GetShows(int movieId, int cinemaId) => SQLContext.GetShows(movieId, cinemaId);
+
+        public Show GetShowOnId(int showId) => SQLContext.GetShowOnId(showId);
     }
 }

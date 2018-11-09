@@ -1,0 +1,43 @@
+﻿@model Killerapp.ViewModels.UserViewModels.FriendsViewModel
+@using Models
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="friendsList">
+            <h2>All your friends</h2>
+            <ul>
+                @foreach(User user in Model.Friends)
+                {
+                    <li>@user.Name</li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="searchFriends">
+            <h2>Search Friends</h2>
+            <div class="searchInput">
+                <input asp-for="SearchTerm" placeholder="search.." />
+                <button asp-controller="Friend" asp-action="SearchUsers">Search</button>
+            </div>
+            <ul>
+                @if(Model.Users == null)
+                {
+                    <li><p>Users will be displayed here</p></li>
+                }
+                else
+                {
+                    @foreach(User user in Model.Users)
+                     {
+                        <li>@user.Name <a href="@Url.Action("SendFriendInvite", "Friend",  Model.AddFriendId = user.Id)">Add</a></li>
+                     }
+                }
+                
+            </ul>
+        </div>
+    </div>
+</div>
+

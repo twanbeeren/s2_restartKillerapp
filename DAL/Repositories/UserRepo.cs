@@ -8,10 +8,11 @@ namespace DAL.Repositories
 {
    public  class UserRepo
    {
-        private readonly ISQLContext SQLContext = new SQLContext();
+        private readonly IUserContext UserContext = new UserContext();
 
-        public bool Login(string email, string password) => SQLContext.Login(email, password);
-        public void Register(User user) => SQLContext.Register(user);
-        public User GetUser(string email) => SQLContext.GetUser(email);
+        public bool Login(string email, string password) => UserContext.Login(email, password);
+        public void Register(User user) => UserContext.Register(user);
+        public User GetUser(string email) => UserContext.GetUser(email);
+        public User GetUserOnId(int id) => UserContext.GetUserOnId(id);
     }
 }

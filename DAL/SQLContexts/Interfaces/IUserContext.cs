@@ -10,6 +10,6 @@ namespace DAL.SQLContexts
         bool Login(string email, string password);
         void Register(User user);
         User GetUser(string email);
-        void InviteFriend(User user, int userId);
+        User GetUserOnId(int userId);
     }
 }

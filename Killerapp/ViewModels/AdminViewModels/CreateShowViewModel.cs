@@ -22,7 +22,7 @@ namespace Killerapp.ViewModels.AdminViewModels
         public Movie Movie { get; set; }
 
         [Required]
-        [Display(Name = "DateTime")]
+        [Display(Name = "Date")]
         [DataType(DataType.DateTime)]
         public DateTime Date { get; set; }
 

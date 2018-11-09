@@ -99,27 +99,42 @@ namespace DAL.SQLContexts
             return user;
         }
 
-        public void InviteFriend(User user, int userId)
+        public User GetUserOnId(int userId)
         {
+            User user = null;
             try
             {
                 using (SqlConnection conn = new SqlConnection(connecstring))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("dbo.InviteFriend", conn))
+                    using (SqlCommand cmd = new SqlCommand("dbo.GetUserOnId", conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("in_User1Id", user.Id);
-                        cmd.Parameters.AddWithValue("in_User2Id", userId);
+                        cmd.Parameters.AddWithValue("in_Id", userId);
                         cmd.ExecuteNonQuery();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(0);
+                                string name = reader.GetString(1);
+                                string password = reader.GetString(2);
+                                string email = reader.GetString(3);
+                                int age = reader.GetInt32(4);
+                                bool admin = reader.GetBoolean(5);
+                                user = new User(id, name, password, email, age, admin);
+                            }
+                        }
                     }
+
                     conn.Close();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw (ex);
+                return null;
             }
+            return user;
         }
     }
 }

@@ -6,9 +6,10 @@
 @section SessionUser{
     @if (Model.CurrentUser != null)
     {
-        <li>Welkom @Model.CurrentUser.Name</li>
+        <li><p>Welkom @Model.CurrentUser.Name</p></li>
+        <li><a asp-controller="Friend" asp-action="Index">Friends</a></li>
     }
-    @if(Model.CurrentUser != null && Model.Admin == 1)
+    @if (Model.CurrentUser != null && Model.Admin == 1)
     {
         <li><a asp-controller="Admin" asp-action="Index">Admin</a></li>
     }
@@ -63,7 +64,7 @@
 </div>
 <div class="row">
     @foreach (Movie movie in Model.Movies)
-     {
+    {
         <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="movie-card">
                 <div class="movie-header">
@@ -74,7 +75,7 @@
                 </div><!--movie-header-->
                 <div class="movie-content">
                     <div class="movie-content-header">
-                        <a href="@Url.Action("MovieInfo", "Order", new { movieId = movie.Id })" >
+                        <a href="@Url.Action("MovieInfo", "Order", new { movieId = movie.Id })">
                             <h3 class="movie-title">@movie.Name</h3>
                         </a>
                         @*<div class="imax-logo"></div>*@
@@ -96,9 +97,9 @@
                 </div>
             </div>
         </div>
-     }
+    }
 </div>
-    
+
 
 
 @section Scripts{

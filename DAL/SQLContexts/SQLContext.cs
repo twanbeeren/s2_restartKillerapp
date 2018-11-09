@@ -10,7 +10,6 @@ namespace DAL.SQLContexts
 {
     class SQLContext : ISQLContext
     {
-
         private static string connecstring = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog = CinemaApp; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         public bool Login(string email, string password)
@@ -328,7 +327,8 @@ namespace DAL.SQLContexts
                                 Movie movie = new Movie();
                                 movieHall = this.GetMovieHallOnId(movieHallId);
                                 movie = this.GetMovieOnId(movieId);
-                                Show show = new Show(movieHall, movie, date, price);
+                                Show show = new Show(showId, movieHall, movie, date, price);
+                                shows.Add(show);
                             }
                         }
                     }
@@ -353,7 +353,7 @@ namespace DAL.SQLContexts
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("in_MovieHallId", show.MovieHall.Id);
-                        cmd.Parameters.AddWithValue("in_MovieId", show.Movie.Id);
+                        cmd.Parameters.AddWithValue("in_MovieId", (object)show.Movie.Id);
                         cmd.Parameters.AddWithValue("in_Date", show.Date);
                         cmd.Parameters.AddWithValue("in_ShowDuration", show.ShowDuration);
                         cmd.Parameters.AddWithValue("in_Price", show.Price);

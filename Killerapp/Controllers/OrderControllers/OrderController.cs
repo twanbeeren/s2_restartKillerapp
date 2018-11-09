@@ -27,14 +27,14 @@ namespace Killerapp.Controllers
             return View(model);
         }
 
-        [Route("api/order")]
+        [Route("api/showtimes")]
         [HttpGet]
-        public IActionResult Shows(int movieId, int cinemaId)
+        public JsonResult Shows(int movieId, int cinemaId)
         {
             List<Show> shows = showLogic.GetShows(movieId, cinemaId);
-            var json = JsonConvert.SerializeObject(shows);
-            return Json(json);
+            return Json(shows);
         }
+
         [HttpGet]
         public IActionResult PickTicket(int showId)
         {

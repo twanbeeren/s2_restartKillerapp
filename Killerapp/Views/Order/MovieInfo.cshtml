@@ -16,27 +16,37 @@
 </div>
 <div class="row">
     <div class="col-lg-3">
-        <div class="cinemalist">
+        <div class="cinemaList">
             <ul>
                 @foreach (Cinema cinema in Model.Cinemas)
                 {
-                    <li><a id="@cinema.Name" onclick="getAvailableShows(this.value)">@cinema.Name</a></li>
+                    <li><a id="cinema_@cinema.Id" class="cinema" onclick="getAvailableShows(@cinema.Id, @Model.Movie.Id)">@cinema.Name</a></li>
                 }
             </ul>
         </div>
     </div>
     <div class="col-lg-9">
-        <div id="shows" class="showtimes">
-            
+        <div class="showtimes">
+            <h3 class="text-center">Showtimes</h3>
+            <ul id="shows">
+
+            </ul>
         </div>
     </div>
 </div>
-
 @section Scripts{
     <script>
-        function(getAvailableShows) {
-            var jsonData = $.getJSON("api/order")
-            document.getElementById("shows").innerHTML(jsonData)
+        function getAvailableShows(cinemaId, movieId) {
+            $.ajax({
+                type: 'GET',
+                url: '/api/showtimes?movieId=' + movieId + '&cinemaId=' + cinemaId,
+                success: function (shows) {
+                    console.log(shows);
+                    $.each(shows, function (i, show) {
+                        $('#shows').append('<li>Showtime: ' + show.date + '</li>');
+                    });
+                }
+            });
         }
         
     </script>

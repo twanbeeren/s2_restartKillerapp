@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DAL.SQLContexts
+namespace DataInterfaces.Interfaces
 {
-    interface IFriendContext
+    public interface IFriendContext
     {
         List<User> GetFriends(int userId);
-        void SendFriendInvite(int user1Id, int user2Id);
+        void SendFriendInvite(int currentUserId, int userId);
         List<User> GetUsersOnSearch(string searchTerm);
+        List<User> GetFriendRequests(int userId);
     }
 }

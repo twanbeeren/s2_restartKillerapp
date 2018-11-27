@@ -26,8 +26,8 @@
         </div>
     </div>
     <div class="col-lg-9">
-        <div class="showtimes">
-            <h3 class="text-center">Showtimes</h3>
+        <div class="text-center showtimes">
+            <h3>Showtimes</h3>
             <ul id="shows">
 
             </ul>
@@ -43,7 +43,7 @@
                 success: function (shows) {
                     console.log(shows);
                     $.each(shows, function (i, show) {
-                        $('#shows').append('<li>Showtime: ' + show.date + '</li>');
+                        $('#shows').append('<li>Showtime: ' + show.time + '</li>');
                     });
                 }
             });

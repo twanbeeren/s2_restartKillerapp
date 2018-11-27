@@ -21,22 +21,38 @@ namespace Killerapp.Controllers
             int userId = HttpContext.Session.GetInt32("Id").GetValueOrDefault(0);
             model.CurrentUser = userLogic.GetUserOnId(userId);
             model.Friends = friendLogic.GetFriends(userId);
+            model.FriendRequests = friendLogic.GetFriendRequests(userId);
             return View(model);
         }
-
-        //this method should be called with an AJAX call and return a JSON object
+        
+        [Route("api/searchusers")]
         [HttpGet]
-        public JsonResult SearchUsers(FriendsViewModel model)
+        public JsonResult SearchUsers(string searchTerm)
         {
-            List<User> users = friendLogic.GetUsersOnSearch(model.SearchTerm);
+            List<User> users = friendLogic.GetUsersOnSearch(searchTerm);
             return Json(users);
             
         }
 
+        [Route("api/sendinvite")]
         [HttpPost]
-        public IActionResult SendFriendInvite(FriendsViewModel model)
+        public IActionResult SendFriendInvite(int currentUserId, int userId)
         {
-            friendLogic.SendFriendInvite(model.CurrentUser.Id, model.AddFriendId);
+            friendLogic.SendFriendInvite(currentUserId, userId);
+            return RedirectToAction("Index");
+        }
+
+        [Route("api/acceptinvite")]
+        public IActionResult AcceptFriendInvite(int currentUserId, int userId)
+        {
+            friendLogic.AcceptFriendInvite(currentUserId, userId);
+            return RedirectToAction("Index");
+        }
+
+        [Route("api/denyinvite")]
+        public IActionResult DenyFriendInvite(int currentUserId, int userId)
+        {
+            friendLogic.DenyFriendInvite(currentUserId, userId);
             return RedirectToAction("Index");
         }
     }

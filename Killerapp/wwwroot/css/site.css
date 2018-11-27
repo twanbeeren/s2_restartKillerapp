@@ -364,7 +364,12 @@ ul > li > a:hover{
     border-radius: 5px;
 }
 
+.searchFriends > ul > li{
+    margin-top: 5px;
+}
+
 .searchInput{
+    color: black;
     display: inline;
 }
 
@@ -385,6 +390,14 @@ ul > li > a:hover{
     height: 80%;
     width: 100%;
     background-color: aquamarine;
+}
+
+friendsList{
+
+}
+
+friendRequests{
+
 }
 
 

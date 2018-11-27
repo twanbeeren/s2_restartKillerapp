@@ -12,6 +12,7 @@ namespace Models
         public MovieHall MovieHall { get; private set; }
         public Movie Movie { get; private set; }
         public DateTime Date { get; private set; }
+        public string Time { get; private set; }
         public int ShowDuration { get; private set; }
         public double Price { get; private set; }
 
@@ -21,6 +22,7 @@ namespace Models
             MovieHall = movieHall;
             Movie = movie;
             Date = date;
+            Time = SetTime(date);
             ShowDuration = SetShowDuration(movie);
             Price = price;
         }
@@ -29,10 +31,15 @@ namespace Models
             MovieHall = movieHall;
             Movie = movie;
             Date = date;
+            Time = SetTime(date);
             ShowDuration = SetShowDuration(movie);
             Price = price;
         }
 
+        private string SetTime(DateTime date)
+        {
+            return Time = date.ToString("HH:mm");
+        }
         private int SetShowDuration(Movie movie)
         {
             int breaktime = 15;

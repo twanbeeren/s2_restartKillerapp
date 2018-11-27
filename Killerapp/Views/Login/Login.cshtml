@@ -12,12 +12,12 @@
                         <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
                             <div class="form-group">
                                 <label asp-for="Email" class="control-label"></label>
-                                <input asp-for="Email" class="form-control">
+                                <input asp-for="Email" class="form-control" value="twan@mail.nl">
                                 <span asp-validation-for="Email" class="help-block"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Password" class="control-label"></label>
-                                <input asp-for="Password" type="password" class="form-control" id="password" name="password" title="Please enter your password">
+                                <input asp-for="Password" type="password" class="form-control" id="password" name="password" title="Please enter your password" value="Wachtwoord">
                                 <span asp-validation-for="Password" class="help-block"></span>
                             </div>
                             <div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>

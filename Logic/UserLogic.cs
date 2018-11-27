@@ -8,8 +8,7 @@ namespace Logic
     {
         private UserRepo userRepo = new UserRepo();
 
-        public bool CheckLogin(string name, string password) => userRepo.Login(name, password);
-
+        public bool CheckLogin(string email, string password) => userRepo.Login(email, password);
         public User GetUser(string email) => userRepo.GetUser(email);
         public User GetUserOnId(int id) => userRepo.GetUserOnId(id);
         public void Register(User user) => userRepo.Register(user);

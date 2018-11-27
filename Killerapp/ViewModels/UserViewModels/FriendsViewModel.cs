@@ -11,7 +11,7 @@ namespace Killerapp.ViewModels.UserViewModels
         public User CurrentUser { get; set; }
         public List<User> Users { get; set; }
         public List<User> Friends { get; set; }
-        public string SearchTerm { get; set; }
+        public List<User> FriendRequests { get; set; }
         public int AddFriendId { get; set; }
     }
 }

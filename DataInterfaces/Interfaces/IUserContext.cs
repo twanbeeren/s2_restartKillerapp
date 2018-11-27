@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DAL.SQLContexts
+namespace DataInterfaces.Interfaces
 {
-    interface IUserContext
+    public interface IUserContext
     {
         bool Login(string email, string password);
         void Register(User user);

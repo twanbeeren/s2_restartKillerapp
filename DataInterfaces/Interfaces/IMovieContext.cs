@@ -3,11 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DAL.SQLContexts
+namespace DataInterfaces.Interfaces
 {
-    interface IMovieContext
+    public interface IMovieContext
     {
-        MovieHall GetMovieHallOnId(int movieHallId);
         Movie GetMovieOnId(int movieId);
         List<Movie> GetMovies();
     }

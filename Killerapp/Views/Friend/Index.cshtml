@@ -8,10 +8,21 @@
     <div class="col-lg-6">
         <div class="friendsList">
             <h2>All your friends</h2>
-            <ul>
-                @foreach(User user in Model.Friends)
+            <ul id="usernames">
+                @foreach (User user in Model.Friends)
                 {
                     <li>@user.Name</li>
+                }
+            </ul>
+        </div>
+        <div class="friendRequests">
+            <h2>All your friendrequests</h2>
+            <ul>
+                @foreach (User user in Model.FriendRequests)
+                {
+                    <li id="@user.Id">@user.Name <span class="badge badge-primary badge-pill defaultbackground"><a onclick="AcceptFriendRequest(@user.Name, @Model.CurrentUser.Id, @user.Id)"><span class="glyphicon glyphicon-ok"></span></a></span> 
+                                                 <span class="badge badge-primary badge-pill defaultbackground"><a onclick="DenyFriendRequest(@Model.CurrentUser.Id, @user.Id)"><span class="glyphicon glyphicon-remove"></span></a></span>
+                    </li>
                 }
             </ul>
         </div>
@@ -20,24 +31,74 @@
         <div class="searchFriends">
             <h2>Search Friends</h2>
             <div class="searchInput">
-                <input asp-for="SearchTerm" placeholder="search.." />
-                <button asp-controller="Friend" asp-action="SearchUsers">Search</button>
+                <input type="text" id="SearchTerm" placeholder="search.." />
+                <button onclick="SearchUsers()">Search</button>
             </div>
-            <ul>
-                @if(Model.Users == null)
-                {
-                    <li><p>Users will be displayed here</p></li>
-                }
-                else
-                {
-                    @foreach(User user in Model.Users)
-                     {
-                        <li>@user.Name <a href="@Url.Action("SendFriendInvite", "Friend",  Model.AddFriendId = user.Id)">Add</a></li>
-                     }
-                }
-                
+            <ul id="searchusers">
+
             </ul>
         </div>
     </div>
 </div>
 
+@section Scripts{
+    <script>
+        function SearchUsers() {
+            var searchTerm = $('#SearchTerm').val();
+            $.ajax({
+                type: 'GET',
+                url: '/api/searchusers?searchTerm=' + searchTerm,
+                success: function (users) {
+                    console.log(users);
+                    $.each(users, function (i, user) {
+                        $('#searchusers').append('<li>User: ' + user.name + ' <span class="badge badge-primary badge-pill defaultbackground"><a onclick="SendFriendInvite(' + @Model.CurrentUser.Id, user.id + ')"><span class="glyphicon glyphicon-list" style="color:white"></span></a></span></li>');
+                    });
+                }
+            });
+        }
+        
+        function SendFriendInvite(currentUserId, userId) {
+            $.ajax({
+                type: 'POST',
+                url: '/api/sendinvite',
+                data: {
+                    currentUserId,
+                    userId
+                },
+                succes: alert("Uw invite is verstuurd"),
+            });
+        }
+
+        function AcceptFriendInvite(userName, currentUserId , userId) {
+            $.ajax({
+                type: 'POST',
+                url: '/api/acceptinvite',
+                data: {
+                    currentUserId,
+                    userId
+                },
+                succes: function () {
+                    $('#usernames').append('<li>User: ' + username + '</li>');
+                    $('#' + userId).remove();
+                }
+            });
+        }
+
+        function DenyFriendInvite(currentUserId, userId) {
+            $.ajax({
+                type: 'POST',
+                url: '/api/denyinvite',
+                data: {
+                    currentUserId,
+                    userId
+                },
+                succes: function () {
+                    $('#usernames').append('<li>User: ' + username + '</li>');
+                    $('#' + userId).remove();
+                }
+            });
+        }
+
+
+    </script>
+}

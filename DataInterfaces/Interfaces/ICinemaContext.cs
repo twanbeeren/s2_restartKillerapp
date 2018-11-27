@@ -3,10 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DAL.SQLContexts
+namespace DataInterfaces.Interfaces
 {
-    interface ICinemaContext
+    public interface ICinemaContext
     {
         List<Cinema> GetCinemas();
+
+        Cinema GetCinemaOnId(int cinemaId);
     }
 }

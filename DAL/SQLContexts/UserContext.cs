@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using DataInterfaces.Interfaces;
 using Models;
 
 namespace DAL.SQLContexts
@@ -14,7 +15,7 @@ namespace DAL.SQLContexts
         public bool Login(string email, string password)
         {
             int UserExist = 0;
-            using (SqlConnection conn = new SqlConnection(connecstring))
+            using (SqlConnection conn = new SqlConnection(DatabaseString.Connecstring))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand("dbo.Login", conn))
@@ -40,7 +41,7 @@ namespace DAL.SQLContexts
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(connecstring))
+                using (SqlConnection conn = new SqlConnection(DatabaseString.Connecstring))
                 {
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand("dbo.Register", conn))
@@ -61,13 +62,12 @@ namespace DAL.SQLContexts
             }
 
         }
-
         public User GetUser(string email)
         {
             User user = null;
             try
             {
-                using (SqlConnection conn = new SqlConnection(connecstring))
+                using (SqlConnection conn = new SqlConnection(DatabaseString.Connecstring))
                 {
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand("dbo.GetUser", conn))
@@ -98,13 +98,12 @@ namespace DAL.SQLContexts
             }
             return user;
         }
-
         public User GetUserOnId(int userId)
         {
             User user = null;
             try
             {
-                using (SqlConnection conn = new SqlConnection(connecstring))
+                using (SqlConnection conn = new SqlConnection(DatabaseString.Connecstring))
                 {
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand("dbo.GetUserOnId", conn))

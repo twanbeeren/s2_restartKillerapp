@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DAL.SQLContexts
+namespace DataInterfaces.Interfaces
 {
-    interface IAdminContext
+    public interface IAdminContext
     {
         void CreateShow(Show show);
         void CreateCinema(Cinema cinema);

@@ -1,4 +1,5 @@
 ﻿using DAL.SQLContexts;
+using DataInterfaces.Interfaces;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,9 @@ namespace DAL.Repositories
 {
     public class CinemaRepo
     {
-        private readonly ISQLContext SQLContext = new SQLContext();
+        private readonly ICinemaContext Context = new CinemaContext();
 
-        public List<Cinema> GetCinemas() => SQLContext.GetCinemas();
+        public List<Cinema> GetCinemas() => Context.GetCinemas();
+        public Cinema GetCinema(int cinemaId) => Context.GetCinemaOnId(cinemaId);
     }
 }

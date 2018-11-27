@@ -1,4 +1,5 @@
 ﻿using DAL.SQLContexts;
+using DataInterfaces.Interfaces;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,10 @@ namespace DAL.Repositories
 {
     public class AdminRepo
     {
-        private readonly ISQLContext SQLContext = new SQLContext();
+        private readonly IAdminContext Context = new AdminContext();
 
-        public void CreateShow(Show show) => SQLContext.CreateShow(show);
+        public void CreateShow(Show show) => Context.CreateShow(show);
 
-        public void CreateCinema(Cinema cinema) => SQLContext.CreateCinema(cinema);
+        public void CreateCinema(Cinema cinema) => Context.CreateCinema(cinema);
     }
 }

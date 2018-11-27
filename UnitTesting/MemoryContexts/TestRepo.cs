@@ -1,16 +1,18 @@
-﻿using DAL.SQLContexts;
-using DataInterfaces.Interfaces;
+﻿using DataInterfaces.Interfaces;
 using Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DAL.Repositories
+namespace UnitTesting.MemoryContexts
 {
-   public  class UserRepo
-   {
-        private readonly IUserContext UserContext = new UserContext();
+    class TestRepo
+    {
 
+        private readonly IUserContext UserContext = new UserTestContext();
+        private readonly IAdminContext AdminContext = new AdminTestContext();
+
+        //public List<User> SeedUsers() => Context.
         public bool Login(string email, string password) => UserContext.Login(email, password);
         public void Register(User user) => UserContext.Register(user);
         public User GetUser(string email) => UserContext.GetUser(email);

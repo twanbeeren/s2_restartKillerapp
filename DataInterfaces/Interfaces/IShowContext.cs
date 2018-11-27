@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DAL.SQLContexts
+namespace DataInterfaces.Interfaces
 {
-    interface IShowContext
+    public interface IShowContext
     {
         Show GetShowOnId(int showId);
         List<Show> GetShows(int movieId, int cinemaId);

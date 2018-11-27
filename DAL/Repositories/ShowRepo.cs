@@ -1,4 +1,5 @@
 ﻿using DAL.SQLContexts;
+using DataInterfaces.Interfaces;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,10 @@ namespace DAL.Repositories
 {
     public class ShowRepo
     {
-        private readonly ISQLContext SQLContext = new SQLContext();
+        private readonly IShowContext Context = new ShowContext();
 
-        public List<Show> GetShows(int movieId, int cinemaId) => SQLContext.GetShows(movieId, cinemaId);
+        public List<Show> GetShows(int movieId, int cinemaId) => Context.GetShows(movieId, cinemaId);
 
-        public Show GetShowOnId(int showId) => SQLContext.GetShowOnId(showId);
+        public Show GetShowOnId(int showId) => Context.GetShowOnId(showId);
     }
 }
